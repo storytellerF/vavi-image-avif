@@ -35,17 +35,7 @@ jobs:
       - name: Create Maven settings.xml
         run: |
           mkdir -p ~/.m2
-          cat > ~/.m2/settings.xml << EOF
-          <settings>
-            <servers>
-              <server>
-                <id>central</id>
-                <username>$CENTRAL_USERNAME</username>
-                <password>$CENTRAL_PASSWORD</password>
-              </server>
-            </servers>
-          </settings>
-          EOF
+          printf '<settings>\n  <servers>\n    <server>\n      <id>central</id>\n      <username>%s</username>\n      <password>%s</password>\n    </server>\n  </servers>\n</settings>\n' "$CENTRAL_USERNAME" "$CENTRAL_PASSWORD" > ~/.m2/settings.xml
         env:
           CENTRAL_USERNAME: ${{ secrets.CENTRAL_USERNAME }}
           CENTRAL_PASSWORD: ${{ secrets.CENTRAL_PASSWORD }}

@@ -60,9 +60,11 @@ class Test1 {
     void setup() throws IOException {
         if (localPropertiesExists()) {
             Properties props = new Properties();
-            props.load(Files.newInputStream(Paths.get("local.properties")));
-            if (props.containsKey("file")) file = props.getProperty("file");
-            if (props.containsKey("zip")) zip = props.getProperty("zip");
+            try (var in = Files.newInputStream(Paths.get("local.properties"))) {
+                props.load(in);
+            }
+            file = props.getProperty("file", file);
+            zip = props.getProperty("zip", zip);
         }
     }
 

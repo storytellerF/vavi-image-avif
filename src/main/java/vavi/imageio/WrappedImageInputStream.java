@@ -44,6 +44,8 @@ public class WrappedImageInputStream extends InputStream {
 
     @Override
     public int available() throws IOException {
-        return (int) Math.min(iis.length() - iis.getStreamPosition(), Integer.MAX_VALUE);
+        long remaining = iis.length() - iis.getStreamPosition();
+        if (remaining < 0) return 0;
+        return (int) Math.min(remaining, Integer.MAX_VALUE);
     }
 }
