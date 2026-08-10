@@ -39,13 +39,7 @@ public class WrappedImageInputStream extends InputStream {
 
     @Override
     public long skip(long n) throws IOException {
-        long skipped = 0;
-        while (skipped < n) {
-            int r = iis.read();
-            if (r < 0) break;
-            skipped++;
-        }
-        return skipped;
+        return iis.skipBytes(n);
     }
 
     @Override
