@@ -1,10 +1,12 @@
-name: Java CI
+name: Test
 
-on: [push]
+on:
+  push:
+  pull_request:
+    branches: [main]
 
 jobs:
   build:
-
     runs-on: macos-14
 
     steps:

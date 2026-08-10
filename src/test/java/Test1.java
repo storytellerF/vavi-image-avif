@@ -29,14 +29,12 @@ import javax.imageio.stream.ImageInputStream;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import java.util.Properties;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
 import vavi.awt.image.avif.jna.Avif;
-import vavi.util.Debug;
-import vavi.util.properties.annotation.Property;
-import vavi.util.properties.annotation.PropsEntity;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -48,23 +46,23 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @author <a href="mailto:umjammer@gmail.com">Naohide Sano</a> (nsano)
  * @version 0.00 2022-09-07 nsano initial version <br>
  */
-@PropsEntity(url = "file:local.properties")
 class Test1 {
 
     static boolean localPropertiesExists() {
         return Files.exists(Paths.get("local.properties"));
     }
 
-    @Property(name = "file")
     String file = "src/test/resources/kimono.avif";
 
-    @Property(name = "zip")
     String zip;
 
     @BeforeEach
     void setup() throws IOException {
         if (localPropertiesExists()) {
-            PropsEntity.Util.bind(this);
+            Properties props = new Properties();
+            props.load(Files.newInputStream(Paths.get("local.properties")));
+            if (props.containsKey("file")) file = props.getProperty("file");
+            if (props.containsKey("zip")) zip = props.getProperty("zip");
         }
     }
 
@@ -73,7 +71,7 @@ class Test1 {
     void test0() throws Exception {
         InputStream is = Files.newInputStream(Paths.get(file));
         ByteBuffer bb = ByteBuffer.allocateDirect(is.available());
-Debug.println("size: " + bb.capacity());
+System.out.println("size: " + bb.capacity());
         int l = 0;
         while (l < bb.capacity()) {
             int r = Channels.newChannel(is).read(bb);
@@ -83,10 +81,10 @@ Debug.println("size: " + bb.capacity());
 
         Avif avif = Avif.getInstance();
         boolean r = Avif.isAvifImage(bb, bb.capacity());
-Debug.println("image is avif: " + r);
+System.out.println("image is avif: " + r);
 
         BufferedImage image = avif.getCompatibleImage(bb, bb.capacity());
-Debug.printf("image: %dx%d%n", image.getWidth(), image.getHeight());
+System.out.printf("image: %dx%d%n", image.getWidth(), image.getHeight());
         avif.decode(bb, bb.capacity(), image);
     }
 
@@ -96,7 +94,7 @@ Debug.printf("image: %dx%d%n", image.getWidth(), image.getHeight());
     void test1() throws Exception {
         InputStream is = Files.newInputStream(Paths.get(file));
         ByteBuffer bb = ByteBuffer.allocateDirect(is.available());
-Debug.println("size: " + bb.capacity());
+System.out.println("size: " + bb.capacity());
         int l = 0;
         while (l < bb.capacity()) {
             int r = Channels.newChannel(is).read(bb);
@@ -106,10 +104,10 @@ Debug.println("size: " + bb.capacity());
 
         Avif avif = Avif.getInstance();
         boolean r = Avif.isAvifImage(bb, bb.capacity());
-Debug.println("image is avif: " + r);
+System.out.println("image is avif: " + r);
 
         BufferedImage image = avif.getCompatibleImage(bb, bb.capacity());
-Debug.printf("image: %dx%d%n", image.getWidth(), image.getHeight());
+System.out.printf("image: %dx%d%n", image.getWidth(), image.getHeight());
         show(avif.decode(bb, bb.capacity(), image));
     }
 

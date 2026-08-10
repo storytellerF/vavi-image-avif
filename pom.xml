@@ -7,14 +7,34 @@
   <version>0.0.7</version>
 
   <name>Java AVIF Decoder</name>
+  <description>Java AVIF Decoder</description>
+  <url>https://github.com/umjammer/vavi-image-avif/</url>
+
+  <licenses>
+    <license>
+      <name>MIT License</name>
+      <url>https://opensource.org/licenses/MIT</url>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <id>umjammer</id>
+      <name>umjammer</name>
+      <url>https://github.com/umjammer</url>
+    </developer>
+  </developers>
+
   <scm>
     <url>https://github.com/umjammer/vavi-image-avif/</url>
+    <connection>scm:git:git://github.com/umjammer/vavi-image-avif.git</connection>
+    <developerConnection>scm:git:ssh://github.com:umjammer/vavi-image-avif.git</developerConnection>
+    <tag>vavi-image-avif-${project.version}</tag>
   </scm>
-  <url>https://github.com/umjammer/vavi-image-avif/</url>
+
   <issueManagement>
     <url>https://github.com/umjammer/vavi-image-avif/issues</url>
   </issueManagement>
-  <description>Java AVIF Decoder</description>
 
   <properties>
     <jnaerator.version>0.12</jnaerator.version>
@@ -94,6 +114,61 @@
           <trimStackTrace>false</trimStackTrace>
         </configuration>
       </plugin>
+
+      <!-- Maven Central publishing -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.3.1</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.10.1</version>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <version>3.2.7</version>
+        <executions>
+          <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.sonatype.central</groupId>
+        <artifactId>central-publishing-maven-plugin</artifactId>
+        <version>0.7.0</version>
+        <extensions>true</extensions>
+        <configuration>
+          <publishingServerId>central</publishingServerId>
+          <autoPublish>true</autoPublish>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 
@@ -109,19 +184,7 @@
     </dependencies>
   </dependencyManagement>
 
-  <repositories>
-    <repository>
-      <id>jitpack.io</id>
-      <url>https://jitpack.io</url>
-    </repository>
-  </repositories>
-
   <dependencies>
-    <dependency>
-      <groupId>com.github.umjammer</groupId>
-      <artifactId>vavi-image</artifactId>
-      <version>1.0.12</version>
-    </dependency>
     <dependency>
       <groupId>net.java.dev.jna</groupId>
       <artifactId>jna</artifactId>
@@ -147,13 +210,6 @@
     <dependency>
       <groupId>org.junit.platform</groupId>
       <artifactId>junit-platform-commons</artifactId>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>com.github.umjammer</groupId>
-      <artifactId>vavi-commons</artifactId>
-      <version>1.1.14</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
