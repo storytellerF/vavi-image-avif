@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>io.github.storytellerf</groupId>
-  <artifactId>vavi-image-avif</artifactId>
+  <artifactId>image-avif</artifactId>
   <version>0.0.7</version>
 
   <name>Java AVIF Decoder</name>
