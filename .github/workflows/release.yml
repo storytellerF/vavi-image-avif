@@ -28,9 +28,10 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Import GPG key
-        run: echo "$GPG_PRIVATE_KEY" | gpg --batch --import
-        env:
-          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+        uses: crazy-max/ghaction-import-gpg@v7
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.GPG_PASSPHRASE }}
 
       - name: Create Maven settings.xml
         run: |
