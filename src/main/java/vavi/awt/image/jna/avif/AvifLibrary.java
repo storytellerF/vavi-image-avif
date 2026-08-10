@@ -768,7 +768,7 @@ public interface AvifLibrary extends Library {
 	 */
 	void avifImageStealPlanes(avifImage dstImage, avifImage srcImage, int planes);
 	/**
-	 * dstWidth*dstHeight should be <= AVIF_DEFAULT_IMAGE_SIZE_LIMIT.<br>
+	 * dstWidth {@code * } dstHeight should be &lt;= AVIF_DEFAULT_IMAGE_SIZE_LIMIT.<br>
 	 * Original signature : <code>avifResult avifImageScale(avifImage*, uint32_t, uint32_t, avifDiagnostics*)</code><br>
 	 * <i>native declaration : avif/avif.h:831</i>
 	 */

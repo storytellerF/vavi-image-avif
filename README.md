@@ -1,6 +1,6 @@
-[![Release](https://jitpack.io/v/umjammer/vavi-image-avif.svg)](https://jitpack.io/#umjammer/vavi-image-avif)
-[![Java CI](https://github.com/umjammer/vavi-image-avif/actions/workflows/maven.yml/badge.svg)](https://github.com/umjammer/vavi-image-avif/actions/workflows/maven.yml)
-[![CodeQL](https://github.com/umjammer/vavi-image-avif/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/umjammer/vavi-image-avif/actions/workflows/codeql-analysis.yml)
+[![Release](https://img.shields.io/maven-central/v/io.github.storytellerf/image-avif)](https://central.sonatype.com/artifact/io.github.storytellerf/image-avif)
+[![Java CI](https://github.com/storytellerF/vavi-image-avif/actions/workflows/test.yml/badge.svg)](https://github.com/storytellerF/vavi-image-avif/actions/workflows/test.yml)
+[![CodeQL](https://github.com/storytellerF/vavi-image-avif/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/storytellerF/vavi-image-avif/actions/workflows/codeql-analysis.yml)
 ![Java](https://img.shields.io/badge/Java-17-b07219)
 [![Parent](https://img.shields.io/badge/Parent-vavi--image--sandbox-pink)](https://github.com/umjammer/vavi-image-sandbox)
 
@@ -13,8 +13,8 @@ wrapped [libavif](https://github.com/AOMediaCodec/libavif) by jna<br/>
 
 ## Install
 
- * install `libavif` 1.0.3~ ... e.g. `brew intall libavif`
- * [maven](https://jitpack.io/#umjammer/vavi-image-avif)
+ * install `libavif` 1.0.3~ ... e.g. `brew install libavif`
+ * [Maven Central](https://central.sonatype.com/artifact/io.github.storytellerf/image-avif)
  * add `-Djna.library.path=/opt/homebrew/lib` for jvm args
 
 ## Usage
