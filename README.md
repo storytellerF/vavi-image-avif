@@ -1,4 +1,4 @@
-[![Release](https://img.shields.io/maven-central/v/vavi/vavi-image-avif)](https://central.sonatype.com/artifact/vavi/vavi-image-avif)
+[![Release](https://img.shields.io/maven-central/v/io.github.storytellerf/vavi-image-avif)](https://central.sonatype.com/artifact/io.github.storytellerf/vavi-image-avif)
 [![Java CI](https://github.com/umjammer/vavi-image-avif/actions/workflows/test.yml/badge.svg)](https://github.com/umjammer/vavi-image-avif/actions/workflows/test.yml)
 [![CodeQL](https://github.com/umjammer/vavi-image-avif/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/umjammer/vavi-image-avif/actions/workflows/codeql-analysis.yml)
 ![Java](https://img.shields.io/badge/Java-17-b07219)
@@ -14,7 +14,7 @@ wrapped [libavif](https://github.com/AOMediaCodec/libavif) by jna<br/>
 ## Install
 
  * install `libavif` 1.0.3~ ... e.g. `brew install libavif`
- * [Maven Central](https://central.sonatype.com/artifact/vavi/vavi-image-avif)
+ * [Maven Central](https://central.sonatype.com/artifact/io.github.storytellerf/vavi-image-avif)
  * add `-Djna.library.path=/opt/homebrew/lib` for jvm args
 
 ## Usage
