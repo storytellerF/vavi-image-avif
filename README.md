@@ -1,6 +1,6 @@
 [![Release](https://img.shields.io/maven-central/v/io.github.storytellerf/image-avif)](https://central.sonatype.com/artifact/io.github.storytellerf/image-avif)
-[![Java CI](https://github.com/umjammer/vavi-image-avif/actions/workflows/test.yml/badge.svg)](https://github.com/umjammer/vavi-image-avif/actions/workflows/test.yml)
-[![CodeQL](https://github.com/umjammer/vavi-image-avif/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/umjammer/vavi-image-avif/actions/workflows/codeql-analysis.yml)
+[![Java CI](https://github.com/storytellerF/vavi-image-avif/actions/workflows/test.yml/badge.svg)](https://github.com/storytellerF/vavi-image-avif/actions/workflows/test.yml)
+[![CodeQL](https://github.com/storytellerF/vavi-image-avif/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/storytellerF/vavi-image-avif/actions/workflows/codeql-analysis.yml)
 ![Java](https://img.shields.io/badge/Java-17-b07219)
 [![Parent](https://img.shields.io/badge/Parent-vavi--image--sandbox-pink)](https://github.com/umjammer/vavi-image-sandbox)
 
