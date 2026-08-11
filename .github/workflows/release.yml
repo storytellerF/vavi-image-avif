@@ -1,4 +1,4 @@
-name: Release to Maven Central
+name: Publish to Maven Central
 
 on:
   push:
@@ -19,34 +19,26 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Cache Maven packages
-        uses: actions/cache@v6
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v6
 
-      - name: Import GPG key
-        uses: crazy-max/ghaction-import-gpg@v7
-        with:
-          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-          passphrase: ${{ secrets.GPG_PASSPHRASE }}
-
-      - name: Create Maven settings.xml
+      - name: Install libavif
         run: |
-          mkdir -p ~/.m2
-          printf '<settings>\n  <servers>\n    <server>\n      <id>central</id>\n      <username>%s</username>\n      <password>%s</password>\n    </server>\n  </servers>\n</settings>\n' "$CENTRAL_USERNAME" "$CENTRAL_PASSWORD" > ~/.m2/settings.xml
-        env:
-          CENTRAL_USERNAME: ${{ secrets.CENTRAL_USERNAME }}
-          CENTRAL_PASSWORD: ${{ secrets.CENTRAL_PASSWORD }}
+          sudo apt-get update
+          sudo apt-get install -y libavif-dev
 
-      - name: Set version from tag
+      - name: Extract version from tag
         run: |
-          TAG_VERSION="${GITHUB_REF#refs/tags/v}"
-          mvn versions:set -DnewVersion="$TAG_VERSION" -DgenerateBackupPoms=false
+          VERSION="${GITHUB_REF#refs/tags/v}"
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
 
-      - name: Deploy to Maven Central
-        run: mvn -B deploy -DskipTests
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Publish to Maven Central
+        run: ./gradlew publishAllPublicationsToMavenCentralRepository -Pversion="$VERSION"
         env:
-          MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+          ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.CENTRAL_USERNAME }}
+          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.CENTRAL_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.GPG_PRIVATE_KEY }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.GPG_PASSPHRASE }}

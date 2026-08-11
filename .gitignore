@@ -1,5 +1,10 @@
 /build*
 /obj*
+
+# Gradle
+.gradle/
+build/
+
 /ext/aom
 /ext/dav1d
 /ext/libjpeg
@@ -14,3 +19,4 @@ cscope.*
 tags
 tmp/
 local.properties
+target/

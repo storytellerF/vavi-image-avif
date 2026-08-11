@@ -12,7 +12,6 @@ import java.nio.ByteBuffer;
 import com.sun.jna.Native;
 import com.sun.jna.NativeLong;
 import com.sun.jna.Pointer;
-import org.apache.maven.artifact.versioning.ComparableVersion;
 import vavi.awt.image.jna.avif.AvifLibrary;
 import vavi.awt.image.jna.avif.avifDecoder;
 import vavi.awt.image.jna.avif.avifEncoder;
@@ -39,12 +38,25 @@ public class Avif {
     private Avif() {
         String version = AvifLibrary.INSTANCE.avifVersion();
 logger.log(Level.DEBUG, "libavif version: " + version);
-        ComparableVersion current = new ComparableVersion(version);
-        ComparableVersion allowed = new ComparableVersion("1.0.3");
-
-        if (current.compareTo(allowed) < 0) {
+        if (compareVersions(version, "1.0.3") < 0) {
             throw new IllegalStateException("not targeted libavif version: " + version);
         }
+    }
+
+    /**
+     * Compares two version strings.
+     * @return negative if v1 < v2, zero if v1 == v2, positive if v1 > v2
+     */
+    private static int compareVersions(String v1, String v2) {
+        String[] parts1 = v1.split("\\.");
+        String[] parts2 = v2.split("\\.");
+        int length = Math.max(parts1.length, parts2.length);
+        for (int i = 0; i < length; i++) {
+            int p1 = i < parts1.length ? Integer.parseInt(parts1[i].replaceAll("[^0-9]", "")) : 0;
+            int p2 = i < parts2.length ? Integer.parseInt(parts2[i].replaceAll("[^0-9]", "")) : 0;
+            if (p1 != p2) return Integer.compare(p1, p2);
+        }
+        return 0;
     }
 
     public static Avif getInstance() {

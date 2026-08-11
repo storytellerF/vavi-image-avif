@@ -10,9 +10,9 @@ Java AVIF Decoder — JNA bindings to libavif.
 
 ## Build
 
-- Java 17, Maven
-- Requires `libavif` native library (macOS: `brew install libavif`)
-- `mvn package` to build, `mvn install -DskipTests -Dgpg.skip=true` to install locally
+- Java 17, Gradle
+- Requires `libavif` native library (macOS: `brew install libavif`, Ubuntu: `sudo apt-get install libavif-dev`)
+- `./gradlew build` to build, `./gradlew test` to run tests
 
 ## Publishing
 
