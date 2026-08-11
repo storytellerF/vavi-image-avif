@@ -1,4 +1,7 @@
-/build*
+# Build output directories
+build/
+/out/
+
 /obj*
 
 # Gradle
