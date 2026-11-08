@@ -2,15 +2,11 @@
 
 Java AVIF 解码器，通过 JNA 绑定 libavif。
 
-<a id="repository"></a>
-
 ## 仓库
 
 - **上游**：`umjammer/vavi-image-avif`
 - **Fork**：`storytellerF/vavi-image-avif`
 - **PR 目标**：`storytellerF/vavi-image-avif`（不是原始上游）
-
-<a id="build"></a>
 
 ## 构建
 
@@ -18,15 +14,11 @@ Java AVIF 解码器，通过 JNA 绑定 libavif。
 - 需要 `libavif` 原生库（macOS：`brew install libavif`；Ubuntu：`sudo apt-get install libavif-dev`）
 - 使用 `./gradlew build` 构建，`./gradlew test` 运行测试
 
-<a id="publishing"></a>
-
 ## 发布
 
 通过 Sonatype Central Portal 发布到 Maven Central。
 需要 GitHub Secrets：`CENTRAL_USERNAME`、`CENTRAL_PASSWORD`、`GPG_PRIVATE_KEY`、`GPG_PASSPHRASE`。
 发布工作流由 `v*` tag 触发。
-
-<a id="pr-workflow"></a>
 
 ## PR 流程
 
