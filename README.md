@@ -3,18 +3,22 @@
 
 # vavi-image-avif
 
-Java AVIF decoder and encoder<br/>
-wrapped [libavif](https://github.com/AOMediaCodec/libavif) by jna<br/>
+Java AVIF 解码器与编码器<br/>
+通过 JNA 封装 [libavif](https://github.com/AOMediaCodec/libavif)<br/>
 
 <img alt="avif logo" src="https://upload.wikimedia.org/wikipedia/commons/4/45/Avif-logo-rgb.svg" width="200"/><sub>© <a href="https://aomedia.org/av1/">AOM</a></sub>
 
-## Install
+<a id="install"></a>
 
- * install `libavif` 1.0.3~ ... e.g. `brew install libavif`
+## 安装
+
+ * 安装 `libavif` 1.0.3 或更新版本，例如 `brew install libavif`
  * [Maven Central](https://central.sonatype.com/artifact/io.github.storytellerf/image-avif)
- * add `-Djna.library.path=/opt/homebrew/lib` for jvm args
+ * 为 JVM 参数添加 `-Djna.library.path=/opt/homebrew/lib`
 
-## Usage
+<a id="usage"></a>
+
+## 使用
 
 ```java
     // read
@@ -23,6 +27,8 @@ wrapped [libavif](https://github.com/AOMediaCodec/libavif) by jna<br/>
     ImageIO.write(image, "AVIF", Paths.get("/foo/baz.avif").toFile());
 ```
 
-## References
+<a id="references"></a>
 
- * [based on](https://github.com/AOMediaCodec/libavif/tree/main/android_jni)
+## 参考资料
+
+ * [实现基础](https://github.com/AOMediaCodec/libavif/tree/main/android_jni)
